@@ -1,3 +1,4 @@
+import 'package:counter/presentation/bloc/counter_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'bloc/counter_event.dart';
@@ -20,24 +21,24 @@ class Counter extends StatelessWidget {
     counter = localStorageService.getCounter();
     return BlocProvider(
       create: (_) => CounterBloc(counter),
-      child: (BlocBuilder<CounterBloc, int>(
-        builder: (context, state) {
+      child: (BlocBuilder<CounterBloc, CounterState>(
+        builder: (context,state) {
           return Column(
             children: [
-              Text(state.toString()),
+              Text(state.counter.toString()),
               FloatingActionButton.extended(
                 onPressed: () {
                   BlocProvider.of<CounterBloc>(context)
-                      .add(Increment(counter: state));
-                  localStorageService.setCounter(state+1);
+                      .add(Increment(counter: state.counter));
+                  localStorageService.setCounter(state.counter);
                 },
                 label: const Text('+'),
               ),
               FloatingActionButton.extended(
                 onPressed: () {
                   BlocProvider.of<CounterBloc>(context)
-                      .add(Decrement(counter: state));
-                  localStorageService.setCounter(state-1);
+                      .add(Decrement(counter: state.counter));
+                  localStorageService.setCounter(state.counter);
                 },
                 label: const Text('-'),
               )
