@@ -18,7 +18,20 @@ class Increment extends CounterEvent {
 class Decrement extends CounterEvent {
   const Decrement({required this.counter});
   final int counter;
-
   @override
   List<Object> get props => [counter];
+}
+
+class Reset extends CounterEvent {
+  final int counter;
+  const Reset({required this.counter});
+  @override
+  List<Object> get props => [counter];
+}
+
+class NumChange extends CounterEvent {
+  final int binary;
+  const NumChange({required this.binary});
+  @override
+  List<Object> get props => [binary];
 }

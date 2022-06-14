@@ -24,7 +24,9 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Bloc Test'),
         ),
-        body: Counter(localStorageService: localStorageService,),
+        body: Counter(
+          localStorageService: localStorageService,
+        ),
       ),
     );
   }
