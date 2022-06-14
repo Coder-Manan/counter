@@ -25,8 +25,8 @@ class Counter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     counter = localStorageService.getCounter();
-    return BlocProvider(`
-      create: (_) => CounterBloc(counter),
+    return BlocProvider(
+    create: (_) => CounterBloc(counter),
       child: (BlocBuilder<CounterBloc, CounterState>(
         builder: (context, state) {
           return Column(
