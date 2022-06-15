@@ -30,9 +30,10 @@ class Reset extends CounterEvent {
   List<Object> get props => [counter];
 }
 
-class NumChange extends CounterEvent {
-  final int binary;
-  const NumChange({required this.binary});
+
+class OnStart extends CounterEvent{
+  final int counter;
+  const OnStart({required this.counter});
   @override
-  List<Object> get props => [binary];
+  List<Object> get props => [counter];
 }

@@ -32,8 +32,7 @@ class Counter extends StatelessWidget {
       child: (BlocBuilder<CounterBloc, CounterState>(
         builder: (context, state) {
           // BlocProvider.of<CounterBloc>(context)
-          //             .add(Reset(counter: state.counter)); // add start event
-          // print("x");
+          //             .add(OnStart(counter: state.counter)); // add start event
           return Column(
             children: [
               Text("Counter : ${state.counter}"),
