@@ -21,6 +21,8 @@ class Counter extends StatelessWidget {
     counter = localStorageService.getCounter();
   }
 
+  //function
+
   final LocalStorageService localStorageService;
   @override
   Widget build(BuildContext context) {
@@ -29,10 +31,13 @@ class Counter extends StatelessWidget {
     create: (_) => CounterBloc(counter),
       child: (BlocBuilder<CounterBloc, CounterState>(
         builder: (context, state) {
+          BlocProvider.of<CounterBloc>(context)
+                      .add(Reset(counter: state.counter)); // add start event 
+          print("x");
           return Column(
             children: [
-              Text(state.counter.toString()),
-              Text("Binary Text"),
+              Text("Counter${state.counter}"),
+              Text("Binary${state.binary}"),
               FloatingActionButton.extended(
                 onPressed: () {
                   BlocProvider.of<CounterBloc>(context)

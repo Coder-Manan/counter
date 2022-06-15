@@ -8,7 +8,7 @@ import 'counter_event.dart';
 import 'package:bloc/bloc.dart';
 
 class CounterBloc extends Bloc<CounterEvent, CounterState> {
-  CounterBloc(int counter) : super(CounterState(counter:counter )) {
+  CounterBloc(int counter) : super(CounterState(counter:counter, binary:"loading" )) {
     // on<Increment>(event, emit) async{
     //   try {
     //     emit(BinaryLoading(counter: state.counter + 1, binary: ''));
@@ -17,11 +17,13 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
     //   }
     //   catch(e){print(e);}
     // }
+    // x = fname(counter) == null ? "loading binary" : x 
 
-    on<Increment>((event, emit)=> emit(CounterState(counter: state.counter+1)));
+    on<Increment>((event, emit) async {emit(CounterState(counter: state.counter+1, binary: "loading")); final Binary x = await BinaryRepositories().fetchTheBinary(state.counter+1); emit(CounterState(counter: state.counter, binary:"x"));});
       // ((event, emit) => emit(CounterState(counter: state.counter + 1, binary: BinaryRepositories().fetchTheBinary(state.counter + 1).)));
-    on<Decrement>((event, emit) => emit(CounterState(counter: state.counter - 1)));
-    on<Reset>((event , emit) => emit(CounterState(counter: 0)));
+    on<Decrement>((event, emit) => emit(CounterState(counter: state.counter - 1, binary: "loading")));
+    //on <BinaryLoaded>(((event, emit) => emit(CounterState(counter: state.counter, binaryLoaded: "loading"))));
+    //on<Reset>((event , emit) => emit(CounterState(counter: 0, binaryLoaded: false)));
   }
 
   // Future<void> _onIncrement(event ,  emit) async{
