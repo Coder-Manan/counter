@@ -9,7 +9,7 @@ import 'package:bloc/bloc.dart';
 
 class CounterBloc extends Bloc<CounterEvent, CounterState> {
   CounterBloc(int counter, String binary)
-      : super(CounterState(counter: LocalStorageService().getCounter(), binary: "Loading")) {
+      : super(CounterState(counter:counter, binary: "Loading")) {
     on<Increment>(_onIncrement);
     on<Decrement>(_onDecrement);
     on<Reset>(_onReset);
@@ -22,7 +22,7 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
       Binary bi = (await BinaryRepositories().fetchTheBinary(state.counter+1));
       print(bi.converted);
 
-      emit(CounterState(counter: state.counter+1 , binary: state.binary));
+      emit(CounterState(counter: state.counter+1 , binary: bi.converted));
     } catch (e) {
       print(e);
     }
