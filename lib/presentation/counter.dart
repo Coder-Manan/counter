@@ -33,33 +33,39 @@ class Counter extends StatelessWidget {
         builder: (context, state) {
           BlocProvider.of<CounterBloc>(context)
                       .add(OnStart(counter: state.counter)); // add start event
-          return Column(
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Counter : ${state.counter}"),
-              Text("Binary : ${state.binary}"),
-              FloatingActionButton.extended(
-                onPressed: () {
-                  BlocProvider.of<CounterBloc>(context)
-                      .add(Increment(counter: state.counter));
-                  localStorageService.setCounter(state.counter);
-                },
-                label: const Text('+'),
-              ),
-              FloatingActionButton.extended(
-                onPressed: () {
-                  BlocProvider.of<CounterBloc>(context)
-                      .add(Decrement(counter: state.counter));
-                  localStorageService.setCounter(state.counter);
-                },
-                label: const Text('-'),
-              ),
-              FloatingActionButton.extended(
-                onPressed: () {
-                  BlocProvider.of<CounterBloc>(context)
-                      .add(Reset(counter: state.counter));
-                  localStorageService.setCounter(0);
-                },
-                label: const Text('@'),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Counter : ${state.counter}"),
+                  Text("Binary : ${state.binary}"),
+                  FloatingActionButton.extended(
+                    onPressed: ()  {
+                       BlocProvider.of<CounterBloc>(context)
+                          .add(Increment(counter: state.counter));
+                      localStorageService.setCounter(state.counter+1);
+                    },
+                    label: const Text('+'),
+                  ),
+                  FloatingActionButton.extended(
+                    onPressed: () {
+                      BlocProvider.of<CounterBloc>(context)
+                          .add(Decrement(counter: state.counter));
+                      localStorageService.setCounter(state.counter-1);
+                    },
+                    label: const Text('-'),
+                  ),
+                  FloatingActionButton.extended(
+                    onPressed: () {
+                      BlocProvider.of<CounterBloc>(context)
+                          .add(Reset(counter: state.counter));
+                      localStorageService.setCounter(0);
+                    },
+                    label: const Text('@'),
+                  ),
+                ],
               ),
             ],
           );
