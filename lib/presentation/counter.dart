@@ -9,7 +9,7 @@ import 'package:counter/core/locator.dart';
 
 
 int counter = 0;
-String binary ="" ;
+String binary ="loading..." ;
 
 class Counter extends StatelessWidget {
   const Counter({Key? key, required this.localStorageService})
@@ -28,16 +28,16 @@ class Counter extends StatelessWidget {
   Widget build(BuildContext context) {
     counter = localStorageService.getCounter();
     return BlocProvider(
-    create: (_) => CounterBloc(counter),
+    create: (_) => CounterBloc(counter,binary),
       child: (BlocBuilder<CounterBloc, CounterState>(
         builder: (context, state) {
-          BlocProvider.of<CounterBloc>(context)
-                      .add(Reset(counter: state.counter)); // add start event 
-          print("x");
+          // BlocProvider.of<CounterBloc>(context)
+          //             .add(Reset(counter: state.counter)); // add start event
+          // print("x");
           return Column(
             children: [
-              Text("Counter${state.counter}"),
-              Text("Binary${state.binary}"),
+              Text("Counter : ${state.counter}"),
+              Text("Binary : ${state.binary}"),
               FloatingActionButton.extended(
                 onPressed: () {
                   BlocProvider.of<CounterBloc>(context)

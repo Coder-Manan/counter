@@ -4,10 +4,10 @@ class ApiProvider {
   final Dio _dio = Dio();
 
   Future<dynamic> getBinary(int number) async {
-    final url = "https://networkcalc.com/api/binary/{$number}?from=10&to=2";
+    final url = "https://networkcalc.com/api/binary/$number?from=10&to=2";
     try {
       final response = await _dio.get(url);
-      print(response);
+      print(response.data['converted']);
       return response;
     } catch (e) {
       print(e);

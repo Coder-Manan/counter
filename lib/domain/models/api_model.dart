@@ -7,12 +7,15 @@ class Binary {
 
   Binary({this.status, this.original, this.converted, this.from, this.to});
 
-  Binary.fromJson(Map<String, dynamic> json) {
-    status = json['status'];
-    original = json['original'];
-    converted = json['converted'];
-    from = json['from'];
-    to = json['to'];
+  factory Binary.fromJson(Map<String, dynamic> json) {
+    return Binary(
+        status : json['status'],
+        original : json['original'],
+        converted : json['converted'],
+        from : json['from'],
+        to : json['to'],
+    );
+
   }
 
   Map<String, dynamic> toJson() {
