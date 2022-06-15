@@ -46,7 +46,6 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
 
   Future<void> _onOnStart(OnStart event , Emitter<CounterState> emit) async{
     try {
-      emit(CounterState(counter: state.counter , binary: 'Loading...'));
       Binary bi =
       (await BinaryRepositories().fetchTheBinary(state.counter));
       emit(CounterState(counter: state.counter , binary: bi.converted));
