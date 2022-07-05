@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'presentation/counter.dart';
 import 'package:counter/core/locator.dart';
-import 'package:counter/services/local_storage_service.dart';
+//import 'package:counter/services/local_storage_service.dart';
 
-LocalStorageService localStorageService = locator<LocalStorageService>();
+//late LocalStorageService localStorageService;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await setupLocator();
-  LocalStorageService localStorageService = locator<LocalStorageService>();
-  counter = localStorageService.getCounter();
+  //localStorageService = locator<LocalStorageService>();
+  //counter = localStorageService.getCounter();
   runApp(const MyApp());
 }
 
-int counter = 0;
+//int counter = 0;
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -24,9 +24,7 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Bloc Test'),
         ),
-        body: Counter(
-          localStorageService: localStorageService,
-        ),
+        body: const Counter(),
       ),
     );
   }

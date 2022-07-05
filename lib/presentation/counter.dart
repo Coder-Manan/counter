@@ -1,4 +1,4 @@
-import 'package:counter/domain/repositories/api_repositories.dart';
+//import 'package:counter/domain/repositories/api_repositories.dart';
 import 'package:counter/presentation/bloc/counter_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
@@ -8,31 +8,23 @@ import 'package:counter/services/local_storage_service.dart';
 import 'package:counter/core/locator.dart';
 
 
-int counter = 0;
-String binary ="loading..." ;
-
 class Counter extends StatelessWidget {
-  const Counter({Key? key, required this.localStorageService})
+  const Counter({Key? key})
       : super(key: key);
 
-  initState() async {
-    await setupLocator();
-    LocalStorageService localStorageService = locator<LocalStorageService>();
-    counter = localStorageService.getCounter();
-  }
-
-  //function
-
-  final LocalStorageService localStorageService;
+  //late LocalStorageService localStorageService;
   @override
   Widget build(BuildContext context) {
-    counter = localStorageService.getCounter();
+    final LocalStorageService localStorageService = locator<LocalStorageService>();
+    int counter = localStorageService.getCounter();
+    CounterBloc bloc = CounterBloc(counter.isNaN ? 0 : counter , "Loading");
+    bloc.add(OnStart(counter: counter));
     return BlocProvider(
-    create: (_) => CounterBloc(counter,binary),
+    create: (_) => bloc,
       child: (BlocBuilder<CounterBloc, CounterState>(
         builder: (context, state) {
-          BlocProvider.of<CounterBloc>(context)
-                      .add(OnStart(counter: state.counter)); // add start event
+          //BlocProvider.of<CounterBloc>(context)
+            //          .add(OnStart(counter: state.counter)); // add start event
           return Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

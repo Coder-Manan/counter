@@ -1,8 +1,8 @@
 import 'package:counter/domain/models/api_model.dart';
 import 'package:counter/domain/repositories/api_repositories.dart';
-import 'package:counter/main.dart';
+//import 'package:counter/main.dart';
 import 'package:counter/presentation/bloc/counter_state.dart';
-import 'package:counter/services/local_storage_service.dart';
+//import 'package:counter/services/local_storage_service.dart';
 
 import 'counter_event.dart';
 import 'package:bloc/bloc.dart';
@@ -18,24 +18,24 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
 
   Future<void> _onIncrement(Increment event, Emitter<CounterState> emit) async {
     try {
-      emit(CounterState(counter: state.counter , binary: 'Loading...'));
+      emit(CounterState(counter: state.counter , binary: 'Loading'));
       Binary bi = (await BinaryRepositories().fetchTheBinary(state.counter+1));
-      print(bi.converted);
+      //print(bi.converted);
 
-      emit(CounterState(counter: state.counter+1 , binary: bi.converted));
+      emit(CounterState(counter: state.counter+1 , binary: bi.converted as String));
     } catch (e) {
-      print(e);
+      //print(e);
     }
   }
 
   Future<void> _onDecrement(Decrement event, Emitter<CounterState> emit) async {
     try {
-      emit(CounterState(counter: state.counter, binary: 'Loading...'));
+      emit(CounterState(counter: state.counter, binary: 'Loading'));
       Binary bi =
           (await BinaryRepositories().fetchTheBinary(state.counter - 1));
-      emit(CounterState(counter: state.counter - 1, binary: bi.converted));
+      emit(CounterState(counter: state.counter - 1, binary: bi.converted as String));
     } catch (e) {
-      print(e);
+      //print(e);
     }
   }
 
@@ -43,7 +43,7 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
     try {
       emit(const CounterState(counter: 0, binary: "0"));
     } catch (e) {
-      print(e);
+      //print(e);
     }
   }
 
@@ -51,9 +51,9 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
     try {
       Binary bi =
       (await BinaryRepositories().fetchTheBinary(state.counter));
-      emit(CounterState(counter: state.counter , binary: bi.converted));
+      emit(CounterState(counter: state.counter , binary: bi.converted as String));
     } catch (e) {
-      print(e);
+      //print(e);
     }
   }
 }
