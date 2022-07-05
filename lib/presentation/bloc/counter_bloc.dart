@@ -19,10 +19,10 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
   Future<void> _onIncrement(Increment event, Emitter<CounterState> emit) async {
     try {
       emit(CounterState(counter: state.counter , binary: 'Loading'));
-      Binary bi = (await BinaryRepositories().fetchTheBinary(state.counter+1));
+      String bi = (await BinaryRepositories().fetchTheBinary(state.counter+1));
       //print(bi.converted);
 
-      emit(CounterState(counter: state.counter+1 , binary: bi.converted as String));
+      emit(CounterState(counter: state.counter+1 , binary: bi));
     } catch (e) {
       //print(e);
     }
@@ -31,9 +31,9 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
   Future<void> _onDecrement(Decrement event, Emitter<CounterState> emit) async {
     try {
       emit(CounterState(counter: state.counter, binary: 'Loading'));
-      Binary bi =
+      String bi =
           (await BinaryRepositories().fetchTheBinary(state.counter - 1));
-      emit(CounterState(counter: state.counter - 1, binary: bi.converted as String));
+      emit(CounterState(counter: state.counter - 1, binary: bi));
     } catch (e) {
       //print(e);
     }
@@ -49,9 +49,9 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
 
   Future<void> _onOnStart(OnStart event , Emitter<CounterState> emit) async{
     try {
-      Binary bi =
+      String bi =
       (await BinaryRepositories().fetchTheBinary(state.counter));
-      emit(CounterState(counter: state.counter , binary: bi.converted as String));
+      emit(CounterState(counter: state.counter , binary: bi));
     } catch (e) {
       //print(e);
     }
