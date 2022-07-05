@@ -28,8 +28,9 @@ class Counter extends StatelessWidget {
           if (state.binary.startsWith("Error")) {
             return Column(children: [
               Text(state.binary),
-              FloatingActionButton(
-                  onPressed: (() => bloc.add(OnStart(counter: state.counter))))
+              FloatingActionButton.extended(
+                  onPressed: (() => bloc.add(OnStart(counter: state.counter))),
+                  label: const Text("Retry"),)
             ]);
           }
           if (state.binary.startsWith("Loading")) {
