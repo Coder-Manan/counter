@@ -1,9 +1,5 @@
-//import 'package:counter/domain/models/api_model.dart';
 import 'package:counter/domain/repositories/api_repositories.dart';
-//import 'package:counter/main.dart';
 import 'package:counter/presentation/bloc/counter_state.dart';
-//import 'package:counter/services/local_storage_service.dart';
-
 import 'counter_event.dart';
 import 'package:bloc/bloc.dart';
 
@@ -16,12 +12,10 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
     on<OnStart>(_onOnStart);
   }
 
-
   Future<void> _onIncrement(Increment event, Emitter<CounterState> emit) async {
     try {
       emit(CounterState(counter: state.counter+1, binary: 'Loading'));
       String bi = (await BinaryRepositories().fetchTheBinary(state.counter));
-      //print(bi.converted);
 
       emit(CounterState(counter: state.counter , binary: bi));
     } catch (e) {

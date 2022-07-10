@@ -7,10 +7,10 @@ class ApiProvider {
     final url = "https://networkcalc.com/api/binary/$number?from=10&to=2";
     try {
       final response = await _dio.get(url);
-      //print(response.data['converted']);
+
       return response;
     } catch (e) {
-      //print(e);
+
     }
   }
 }

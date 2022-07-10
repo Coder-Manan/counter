@@ -8,12 +8,3 @@ class CounterState extends Equatable {
   @override
   List<Object> get props => [counter, binary];
 }
-
-// class BinaryLoading extends CounterState {
-//   const BinaryLoading({required super.counter, required super.binary});
-//
-// }
-//
-// class BinaryLoaded extends CounterState {
-//   const BinaryLoaded({required super.counter, required super.binary});
-// }

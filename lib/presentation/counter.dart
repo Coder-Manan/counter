@@ -1,4 +1,3 @@
-//import 'package:counter/domain/repositories/api_repositories.dart';
 import 'package:counter/presentation/bloc/counter_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +9,7 @@ import 'package:counter/core/locator.dart';
 class Counter extends StatelessWidget {
   const Counter({Key? key}) : super(key: key);
 
-  //late LocalStorageService localStorageService;
+
   @override
   Widget build(BuildContext context) {
     final LocalStorageService localStorageService =
@@ -22,8 +21,6 @@ class Counter extends StatelessWidget {
       create: (_) => bloc,
       child: (BlocBuilder<CounterBloc, CounterState>(
         builder: (context, state) {
-          //BlocProvider.of<CounterBloc>(context)
-          //          .add(OnStart(counter: state.counter)); // add start event
 
           if (state.binary.startsWith("Error")) {
             return Column(children: [
